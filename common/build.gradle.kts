@@ -146,8 +146,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 sqldelight {
-    database("PeopleInSpaceDatabase") {
-        packageName = "com.surrus.peopleinspace.db"
+    database("WorkoutDatabase") {
+        packageName = "com.sdss.workout.db"
         sourceFolders = listOf("sqldelight")
     }
 }

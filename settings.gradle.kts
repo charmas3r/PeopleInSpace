@@ -7,7 +7,7 @@ pluginManagement {
 
 }
 
-rootProject.name = "PeopleInSpace"
+rootProject.name = "workout"
 
 include(":app", ":common", ":compose-desktop")
 include(":web")
