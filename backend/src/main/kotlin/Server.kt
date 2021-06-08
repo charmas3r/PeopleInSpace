@@ -1,12 +1,12 @@
-import com.surrus.common.di.initKoin
+import com.sdss.common.di.initKoin
 import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import com.surrus.common.remote.PeopleInSpaceApi
-import com.surrus.common.remote.AstroResult
-import com.surrus.common.remote.Assignment
+import com.sdss.common.remote.PeopleInSpaceApi
+import com.sdss.common.remote.AstroResult
+import com.sdss.common.remote.Assignment
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.ContentNegotiation

@@ -39,7 +39,11 @@ object Compose {
     const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
     const val material = "androidx.compose.material:material:${Versions.compose}"
     const val navigation = "androidx.navigation:navigation-compose:${Versions.nav_compose}"
-    const val accompanist= "com.google.accompanist:accompanist-coil:${Versions.accompanist}"
+}
+
+object Accompanist {
+    const val pager = "com.google.accompanist:accompanist-pager:${Versions.accompanist}"
+    const val coil = "com.google.accompanist:accompanist-coil:${Versions.accompanist}"
 }
 
 object Koin {
@@ -76,4 +80,3 @@ object SqlDelight {
     val nativeDriverMacos = "com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}"
     val sqlliteDriver = "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
 }
-

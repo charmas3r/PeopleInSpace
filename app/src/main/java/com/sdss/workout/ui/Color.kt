@@ -1,4 +1,4 @@
-package com.sdss.workout.workout
+package com.sdss.workout.ui
 
 import androidx.compose.ui.graphics.Color
 

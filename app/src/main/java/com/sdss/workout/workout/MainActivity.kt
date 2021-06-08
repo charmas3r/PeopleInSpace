@@ -1,7 +1,6 @@
 package com.sdss.workout.workout
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -12,18 +11,14 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.*
-import com.sdss.workout.BuildConfig
 import com.sdss.workout.R
-import org.osmdroid.config.Configuration
+import com.sdss.workout.base.BaseActivity
+import com.sdss.workout.ui.WorkoutTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // needed for osmandroid
-        Configuration.getInstance().userAgentValue = BuildConfig.APPLICATION_ID
-
         setContent {
             MainLayout()
         }
@@ -65,7 +60,7 @@ val bottomNavigationItems = listOf(
 fun MainLayout() {
     val navController = rememberNavController()
 
-    PeopleInSpaceTheme {
+    WorkoutTheme {
         Scaffold(
             topBar = {
                 TopAppBar(
