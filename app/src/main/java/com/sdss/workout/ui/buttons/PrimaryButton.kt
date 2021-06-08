@@ -9,8 +9,4 @@ internal fun PrimaryButton(
     modifier: Modifier = Modifier,
     action: () -> Unit)
 {
-    Button(
-        onClick = action
-
-    )
 }
