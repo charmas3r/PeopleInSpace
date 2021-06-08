@@ -3,10 +3,10 @@ package com.sdss.workout.ui
 import androidx.compose.ui.graphics.Color
 
 
-val maroon200 = Color(0xFFb73d2a)
-val maroon500 = Color(0xFF800000)
-val maroon700 = Color(0xFF4f0000)
-val teal200 = Color(0xFF03DAC5)
+val blue = Color(0xFF2C647D)
+val tealBlue = Color(0xFF48A2B0)
+val pinkBiege = Color(0xFFDF7281)
+val errorRed = Color(0xFFE15353)
 
 
 val lowAvailabilityColor = Color(0xFFFF8C00)

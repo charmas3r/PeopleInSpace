@@ -1,5 +1,6 @@
 package com.sdss.workout.intro
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Colors
 import androidx.compose.material.Text
@@ -12,11 +13,16 @@ import com.google.accompanist.pager.PagerState
 
 @ExperimentalPagerApi
 @Composable
-fun WelcomeLayoutContent(pagerState: PagerState) =
-    HorizontalPager(state = pagerState) { page ->
+internal fun WelcomePagerItem(
+    page: Int,
+    modifier: Modifier = Modifier
+) {
+    Box(modifier) {
         Text(
             text = "Page: $page",
             color = Color.White,
             modifier = Modifier.fillMaxWidth()
         )
     }
+}
+

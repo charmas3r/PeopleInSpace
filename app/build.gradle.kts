@@ -66,6 +66,7 @@ dependencies {
     implementation(Compose.navigation)
 
     implementation(Accompanist.pager)
+    implementation(Accompanist.pagerIndicator)
     implementation(Accompanist.coil)
 
     implementation(Koin.core)

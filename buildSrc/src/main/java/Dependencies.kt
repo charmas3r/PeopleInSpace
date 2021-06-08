@@ -43,6 +43,7 @@ object Compose {
 
 object Accompanist {
     const val pager = "com.google.accompanist:accompanist-pager:${Versions.accompanist}"
+    const val pagerIndicator = "com.google.accompanist:accompanist-pager-indicators:${Versions.accompanist}"
     const val coil = "com.google.accompanist:accompanist-coil:${Versions.accompanist}"
 }
 
