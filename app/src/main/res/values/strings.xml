@@ -9,4 +9,9 @@
     <string name="welcome_carousel_desc_3">One or two sentence description. Third page.</string>
     <string name="welcome_carousel_desc_4">One or two sentence description. Fourth page.</string>
     <string name="welcome_carousel_btn">Get Started</string>
+    <string name="setup_screen_top_bar_title">Let\'s get started</string>
+
+    <!-- General strings -->
+    <string name="btn_continue">Continue</string>
+    <string name="btn_skip">Skip</string>
 </resources>

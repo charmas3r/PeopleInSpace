@@ -80,7 +80,7 @@ fun IntroLayout() {
                             modifier = Modifier
                                 .fillMaxWidth(.75f)
                                 .align(Alignment.CenterHorizontally)
-                                .padding(16.dp)
+                                .padding(top = 16.dp, bottom = 16.dp)
                         ) {
                             // Clicked...
                         }
@@ -90,44 +90,6 @@ fun IntroLayout() {
         }
     }
 }
-
-@Composable
-fun TestLayout() {
-    Scaffold(
-        modifier = Modifier.fillMaxSize()
-    ) {
-//        Row(
-//            modifier = Modifier
-//                .fillMaxHeight()
-//                .background(Color.Yellow),
-//            horizontalArrangement = Arrangement.End,
-//            verticalAlignment = Alignment.Bottom
-//        ) {
-//            Box(
-//                Modifier
-//                    .height(50.dp)
-//                    .background(Color.Blue))
-//        }
-        Box(Modifier.fillMaxSize()) {
-            Text("This text is drawn first", modifier = Modifier.align(Alignment.TopCenter))
-
-            Box(modifier = Modifier.align(Alignment.BottomCenter)) {
-                Column() {
-                    Text(
-                        "This text is drawn second to last", modifier = Modifier
-                            .align(Alignment.CenterHorizontally)
-                    )
-
-                    Text(
-                        "This text is drawn last", modifier = Modifier
-                            .align(Alignment.CenterHorizontally)
-                    )
-                }
-            }
-        }
-    }
-}
-
 
 @ExperimentalPagerApi
 @Preview
