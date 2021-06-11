@@ -7,18 +7,21 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
+import com.sdss.workout.R
 import com.sdss.workout.base.BaseActivity
 import com.sdss.workout.ui.WorkoutTheme
+import com.sdss.workout.ui.buttons.PrimaryButton
 
 
 @ExperimentalPagerApi
-class IntroActivity: BaseActivity() {
+class IntroActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -30,39 +33,96 @@ class IntroActivity: BaseActivity() {
 @ExperimentalPagerApi
 @Composable
 fun IntroLayout() {
-    val pagerState = rememberPagerState(pageCount = 3)
     WorkoutTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize()
         ) {
-            Column(Modifier.fillMaxSize()) {
+            Box(
+                Modifier
+                    .fillMaxSize()
+                    .padding(start = 16.dp, end = 16.dp)
+            ) {
+
                 // Display 10 items
                 val pagerState = rememberPagerState(
-                    pageCount = 10,
+                    pageCount = 4,
                     // We increase the offscreen limit, to allow pre-loading of images
                     initialOffscreenLimit = 2,
                 )
 
-                HorizontalPager(
-                    state = pagerState,
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxWidth(),
-                ) { page ->
-                    WelcomePagerItem(
-                        page = page,
+                Box(modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .fillMaxHeight()) {
+                    HorizontalPager(
+                        state = pagerState,
                         modifier = Modifier
-                            .fillMaxWidth(0.8f)
-                            .aspectRatio(1f)
-                    )
+                            .padding(top = 48.dp)
+                    ) { page ->
+                        WelcomePagerItem(
+                            page = page,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                        )
+                    }
                 }
 
-                HorizontalPagerIndicator(
-                    pagerState = pagerState,
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .padding(16.dp),
-                )
+                Box(modifier = Modifier.align(Alignment.BottomCenter)) {
+                    Column {
+                        HorizontalPagerIndicator(
+                            pagerState = pagerState,
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                                .padding(16.dp),
+                        )
+
+                        PrimaryButton(
+                            text = stringResource(id = R.string.welcome_carousel_btn),
+                            modifier = Modifier
+                                .fillMaxWidth(.75f)
+                                .align(Alignment.CenterHorizontally)
+                                .padding(16.dp)
+                        ) {
+                            // Clicked...
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun TestLayout() {
+    Scaffold(
+        modifier = Modifier.fillMaxSize()
+    ) {
+//        Row(
+//            modifier = Modifier
+//                .fillMaxHeight()
+//                .background(Color.Yellow),
+//            horizontalArrangement = Arrangement.End,
+//            verticalAlignment = Alignment.Bottom
+//        ) {
+//            Box(
+//                Modifier
+//                    .height(50.dp)
+//                    .background(Color.Blue))
+//        }
+        Box(Modifier.fillMaxSize()) {
+            Text("This text is drawn first", modifier = Modifier.align(Alignment.TopCenter))
+
+            Box(modifier = Modifier.align(Alignment.BottomCenter)) {
+                Column() {
+                    Text(
+                        "This text is drawn second to last", modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+                    )
+
+                    Text(
+                        "This text is drawn last", modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+                    )
+                }
             }
         }
     }

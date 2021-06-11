@@ -39,6 +39,7 @@ object Compose {
     const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
     const val material = "androidx.compose.material:material:${Versions.compose}"
     const val navigation = "androidx.navigation:navigation-compose:${Versions.nav_compose}"
+    const val constraint = "androidx.constraintlayout:constraintlayout-compose:1.0.0-alpha06"
 }
 
 object Accompanist {

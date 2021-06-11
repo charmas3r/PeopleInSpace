@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">WorkoutApp</string>
+    <string name="welcome_carousel_title_1">Welcome title 1</string>
+    <string name="welcome_carousel_title_2">Welcome title 2</string>
+    <string name="welcome_carousel_title_3">Welcome title 3</string>
+    <string name="welcome_carousel_title_4">Welcome title 4</string>
+    <string name="welcome_carousel_desc_1">One or two sentence description. First page.</string>
+    <string name="welcome_carousel_desc_2">One or two sentence description. Second page.</string>
+    <string name="welcome_carousel_desc_3">One or two sentence description. Third page.</string>
+    <string name="welcome_carousel_desc_4">One or two sentence description. Fourth page.</string>
+    <string name="welcome_carousel_btn">Get Started</string>
 </resources>

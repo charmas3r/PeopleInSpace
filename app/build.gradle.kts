@@ -64,6 +64,7 @@ dependencies {
     implementation(Compose.foundationLayout)
     implementation(Compose.material)
     implementation(Compose.navigation)
+    implementation(Compose.constraint)
 
     implementation(Accompanist.pager)
     implementation(Accompanist.pagerIndicator)
