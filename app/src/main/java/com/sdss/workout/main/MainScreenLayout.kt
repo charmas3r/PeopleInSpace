@@ -53,7 +53,7 @@ fun MainScreenLayout(navController: NavHostController){
                         )
                     }
                 },
-                title = { Text(text = "Jetpack Compose") },
+                title = { Text(text = "Workout App") },
             )
         },
 
@@ -86,13 +86,13 @@ fun MainScreenLayout(navController: NavHostController){
     ) { paddingValues ->
         NavHost(navController, startDestination = IntroScreens.WelcomeCarousel.route) {
             composable(MainScreens.WorkoutScreen.route) {
-                MainScreenLayout(navController = navController)
+                Text(text = "Workout Screen")
             }
             composable(MainScreens.ProgressScreen.route) {
-                // Screen
+                Text(text = "Progress Screen")
             }
             composable(MainScreens.HistoryScreen.route) {
-                //screen
+                Text(text = "History Screen")
             }
         }
     }
