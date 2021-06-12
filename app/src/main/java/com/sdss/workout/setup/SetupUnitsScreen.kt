@@ -1,5 +1,6 @@
 package com.sdss.workout.setup
 
+import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
@@ -14,17 +15,17 @@ import com.sdss.workout.R
 import com.sdss.workout.intro.IntroScreens
 
 @Composable
-fun SetupCurrentWeightScreen(navController: NavController) {
+fun SetupUnitsScreen(navController: NavController) {
     val context = LocalContext.current
     SetupScreenLayout(
-        onPrimaryClick = { navController.navigate(IntroScreens.SetupUnits.route) },
+        onPrimaryClick = { navController.navigate(IntroScreens.SetupOneRepMax.route)},
         onSecondaryClick = {
-            navController.navigate(MainScreen.WorkoutMainScreen.route) {
-            }
+            // clear back stack here.
+            navController.navigate(MainScreen.WorkoutMainScreen.route)
         },
         onBackClick = { navController.popBackStack() }) {
         Column(Modifier.padding(16.dp)) {
-            Text(text = stringResource(id = R.string.setup_weight_text))
+            Text(text = stringResource(id = R.string.setup_units_text) )
         }
     }
 }

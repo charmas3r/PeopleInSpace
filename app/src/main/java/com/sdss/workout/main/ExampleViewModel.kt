@@ -1,4 +1,4 @@
-package com.sdss.workout.workout
+package com.sdss.workout.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

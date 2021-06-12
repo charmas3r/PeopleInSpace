@@ -14,9 +14,17 @@
     <!-- General strings -->
     <string name="btn_continue">Continue</string>
     <string name="btn_skip">Skip</string>
+    <string name="btn_not_today">Not today</string>
+    <string name="lift_bench_press">Bench Press</string>
+    <string name="lift_squats">Squats</string>
+    <string name="lift_deadlifts">Deadlifts</string>
+    <string name="lift_shoulder_press">Shoulder Press</string>
+    <string name="units_std">lbs</string>
+    <string name="units_si">kg</string>
 
     <!-- Setup screens -->
     <string name="setup_weight_text">What\'s your current weight?</string>
-    <string name="setup_measurement_text">Do you prefer standard or metric system measurements?</string>
+    <string name="setup_units_text">Do you prefer standard or metric system measurements?</string>
+    <string name="setup_one_rep_max_text">What\'s your one rep max for the following lifts?</string>
 
 </resources>

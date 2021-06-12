@@ -1,6 +1,6 @@
 package com.sdss.workout.di
 
-import com.sdss.workout.workout.ExampleViewModel
+import com.sdss.workout.main.ExampleViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
