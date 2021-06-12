@@ -9,9 +9,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.sdss.workout.MainScreen
 import com.sdss.workout.R
 import com.sdss.workout.intro.IntroScreens
+import com.sdss.workout.main.MainScreens
 
 @Composable
 fun SetupOneRepMaxScreen(navController: NavController) {
@@ -20,7 +20,7 @@ fun SetupOneRepMaxScreen(navController: NavController) {
         onPrimaryClick = { navController.navigate(IntroScreens.SetupFinish.route) },
         onSecondaryClick = {
             // clear back stack here.
-            navController.navigate(MainScreen.WorkoutMainScreen.route)
+            navController.navigate(MainScreens.WorkoutScreen.route)
         },
         onBackClick = { navController.popBackStack() }) {
         Column(Modifier.padding(16.dp)) {
