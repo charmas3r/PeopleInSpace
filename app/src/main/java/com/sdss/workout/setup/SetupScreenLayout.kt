@@ -16,14 +16,19 @@ import com.sdss.workout.ui.buttons.PrimaryButton
 import com.sdss.workout.ui.buttons.SecondaryButton
 
 @Composable
-fun SetupScreenLayout() {
+fun SetupScreenLayout(
+    onPrimaryClick: () -> Unit,
+    onSecondaryClick: () -> Unit,
+    onBackClick: () -> Unit,
+    content: @Composable BoxScope.() -> Unit
+) {
     WorkoutTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = {
                 TopAppBar(
                     navigationIcon = {
-                        IconButton(onClick = {}) {
+                        IconButton(onClick = onBackClick) {
                             Icon(
                                 painter = if (MaterialTheme.colors.isLight) {
                                     painterResource(id = R.drawable.ic_baseline_arrow_back_24)
@@ -43,25 +48,25 @@ fun SetupScreenLayout() {
                     .fillMaxSize()
                     .padding(start = 16.dp, end = 16.dp)
             ) {
+                Box(content = content, modifier = Modifier.align(Alignment.TopStart).fillMaxWidth())
                 Box(modifier = Modifier.align(Alignment.BottomCenter)) {
                     Column {
                         PrimaryButton(
                             text = stringResource(id = R.string.btn_continue),
                             modifier = Modifier
                                 .fillMaxWidth(.75f)
-                                .align(Alignment.CenterHorizontally)
-                        ) {
-                            // Clicked...
-                        }
+                                .align(Alignment.CenterHorizontally),
+                            onClick = onPrimaryClick
+
+                        )
                         SecondaryButton(
                             text = stringResource(id = R.string.btn_skip),
                             modifier = Modifier
                                 .fillMaxWidth(.75f)
                                 .align(Alignment.CenterHorizontally)
-                                .padding(top = 16.dp, bottom = 16.dp)
-                        ) {
-                            // Clicked...
-                        }
+                                .padding(top = 16.dp, bottom = 16.dp),
+                            onClick = onSecondaryClick
+                        )
                     }
                 }
             }
@@ -74,6 +79,6 @@ fun SetupScreenLayout() {
 @Composable
 fun DefaultPreview() {
     MaterialTheme {
-        SetupScreenLayout()
+        SetupCurrentWeightScreen()
     }
 }

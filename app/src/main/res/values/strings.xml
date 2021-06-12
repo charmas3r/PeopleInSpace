@@ -14,4 +14,9 @@
     <!-- General strings -->
     <string name="btn_continue">Continue</string>
     <string name="btn_skip">Skip</string>
+
+    <!-- Setup screens -->
+    <string name="setup_weight_text">What\'s your current weight?</string>
+    <string name="setup_measurement_text">Do you prefer standard or metric system measurements?</string>
+
 </resources>
