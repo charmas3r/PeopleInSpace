@@ -21,6 +21,7 @@
     <string name="lift_shoulder_press">Shoulder Press</string>
     <string name="units_std">lbs</string>
     <string name="units_si">kg</string>
+    <string name="tf_weight">Weight</string>
 
     <!-- Setup screens -->
     <string name="setup_weight_text">What\'s your current weight?</string>

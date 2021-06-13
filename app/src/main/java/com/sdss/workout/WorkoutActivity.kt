@@ -72,7 +72,6 @@ val bottomNavigationItems = listOf(
 fun MainScreenLayout(){
     WorkoutTheme {
         val navController = rememberNavController()
-
         Scaffold(
             topBar = {
                 TopAppBar(
