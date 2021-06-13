@@ -22,7 +22,6 @@ fun SetupUnitsScreen(navController: NavController) {
     SetupScreenLayout(
         onPrimaryClick = { navController.navigate(IntroScreens.SetupOneRepMax.route)},
         onSecondaryClick = {
-            // clear back stack here.
             context.startActivity(Intent(context, WorkoutActivity::class.java))
         },
         onBackClick = { navController.popBackStack() }) {

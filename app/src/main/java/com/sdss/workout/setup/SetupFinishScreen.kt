@@ -24,7 +24,6 @@ fun SetupFinishScreen(navController: NavController) {
         onPrimaryClick = { navController.navigate(IntroScreens.SetupFinish.route) },
         secondaryButtonRes = R.string.btn_not_today,
         onSecondaryClick = {
-            // clear back stack here.
             context.startActivity(Intent(context, WorkoutActivity::class.java))
         },
         onBackClick = { navController.popBackStack() }) {

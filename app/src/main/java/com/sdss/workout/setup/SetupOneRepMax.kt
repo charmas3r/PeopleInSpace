@@ -29,7 +29,6 @@ fun SetupOneRepMaxScreen(navController: NavController) {
     SetupScreenLayout(
         onPrimaryClick = { navController.navigate(IntroScreens.SetupFinish.route) },
         onSecondaryClick = {
-            // clear back stack here.
             context.startActivity(Intent(context, WorkoutActivity::class.java))
         },
         onBackClick = { navController.popBackStack() }) {
