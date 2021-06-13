@@ -21,11 +21,14 @@
     <string name="lift_shoulder_press">Shoulder Press</string>
     <string name="units_std">lbs</string>
     <string name="units_si">kg</string>
+    <string name="units_std_long">Pounds</string>
+    <string name="units_si_long">Kilograms</string>
     <string name="tf_weight">Weight</string>
 
     <!-- Setup screens -->
     <string name="setup_weight_text">What\'s your current weight?</string>
     <string name="setup_units_text">Do you prefer standard or metric system measurements?</string>
     <string name="setup_one_rep_max_text">What\'s your one rep max for the following lifts?</string>
+    <string name="setup_finish_intro_desc">For the cost of a protein shake a month you can have full access to all of our workout programs.</string>
 
 </resources>

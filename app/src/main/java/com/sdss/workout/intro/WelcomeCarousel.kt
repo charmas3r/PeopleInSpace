@@ -68,7 +68,7 @@ fun WelcomeCarousel(navController: NavController) {
                             .align(Alignment.CenterHorizontally)
                             .padding(top = 16.dp, bottom = 16.dp)
                     ) {
-                        navController.navigate(IntroScreens.SetupWeight.route)
+                        navController.navigate(IntroScreens.SetupUnits.route)
                     }
                 }
             }

@@ -13,16 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.sdss.workout.R
-import com.sdss.workout.WorkoutActivity
 import com.sdss.workout.intro.IntroScreens
+import com.sdss.workout.main.MainScreenActivity
 
 @ExperimentalPagerApi
 @Composable
@@ -30,9 +28,9 @@ fun SetupCurrentWeightScreen(navController: NavController) {
     val context = LocalContext.current
 
     SetupScreenLayout(
-        onPrimaryClick = { navController.navigate(IntroScreens.SetupUnits.route) },
+        onPrimaryClick = { navController.navigate(IntroScreens.SetupOneRepMax.route) },
         onSecondaryClick = {
-            context.startActivity(Intent(context, WorkoutActivity::class.java))
+            context.startActivity(Intent(context, MainScreenActivity::class.java))
         },
         onBackClick = { navController.popBackStack() }) {
         val textState = remember { mutableStateOf(TextFieldValue()) }

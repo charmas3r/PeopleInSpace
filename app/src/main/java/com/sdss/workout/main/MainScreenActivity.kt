@@ -1,4 +1,4 @@
-package com.sdss.workout
+package com.sdss.workout.main
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -20,12 +20,12 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.sdss.workout.R
 import com.sdss.workout.base.BaseActivity
-import com.sdss.workout.main.MainScreens
 import com.sdss.workout.ui.WorkoutTheme
 
 @ExperimentalPagerApi
-class WorkoutActivity : BaseActivity() {
+class MainScreenActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

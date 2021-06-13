@@ -1,4 +1,4 @@
-package com.sdss.workout
+package com.sdss.workout.intro
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -23,7 +23,7 @@ import com.sdss.workout.setup.SetupUnitsScreen
 import com.sdss.workout.ui.WorkoutTheme
 
 @ExperimentalPagerApi
-class MainActivity : BaseActivity() {
+class IntroActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -47,7 +47,6 @@ class MainActivity : BaseActivity() {
 fun IntroNavigation() {
     WorkoutTheme {
         val navController = rememberNavController()
-
         NavHost(navController, startDestination = IntroScreens.WelcomeCarousel.route) {
             composable(IntroScreens.WelcomeCarousel.route) {
                 WelcomeCarousel(navController = navController)

@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.sdss.workout.R
-import com.sdss.workout.WorkoutActivity
 import com.sdss.workout.intro.IntroScreens
+import com.sdss.workout.main.MainScreenActivity
 
 @ExperimentalPagerApi
 @Composable
@@ -29,7 +29,7 @@ fun SetupOneRepMaxScreen(navController: NavController) {
     SetupScreenLayout(
         onPrimaryClick = { navController.navigate(IntroScreens.SetupFinish.route) },
         onSecondaryClick = {
-            context.startActivity(Intent(context, WorkoutActivity::class.java))
+            context.startActivity(Intent(context, MainScreenActivity::class.java))
         },
         onBackClick = { navController.popBackStack() }) {
         val benchState = remember { mutableStateOf(TextFieldValue()) }
