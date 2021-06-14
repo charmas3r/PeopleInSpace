@@ -23,3 +23,7 @@ fun bodyTextStyle() = MaterialTheme.typography.body1.copy(
         fontWeight = FontWeight.Normal,
         color = MaterialTheme.colors.onSurface
 )
+
+fun headerTextStyle() = TextStyle(
+    fontSize = 12.sp
+)
