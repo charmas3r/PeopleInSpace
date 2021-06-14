@@ -2,7 +2,6 @@ package com.sdss.workout.main
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -114,23 +113,24 @@ fun MainScreenLayout() {
                 DrawerItems.getAllDrawerItems().forEach { drawerItem ->
                     if (drawerItem.isHeader) {
                         DrawerRow(
-                            isTextItem = false,
+                            isListItem = false,
                             rowContent = {
                                 Text(
                                     text = stringResource(id = R.string.drawer_general),
-                                    modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
+                                    modifier = Modifier.padding(start = 16.dp, top = 4.dp, bottom = 4.dp),
                                     style = headerTextStyle())
                             }
                         )
                     } else if (drawerItem.isSeperator) {
                         DrawerRow(
-                            isTextItem = false,
+                            isListItem = false,
                             rowContent = {
-                                Divider(color = MaterialTheme.colors.onSurface, thickness = 1.dp)
+                                Divider(color = MaterialTheme.colors.onSurface, thickness = 1.dp, modifier = Modifier.padding(4.dp))
                             }
                         )
                     } else {
                         DrawerRow(
+                            icon = drawerItem.icon,
                             titleRes = drawerItem.titleRes!!,
                             selected = drawerItem.isSelected,
                             onClick = {

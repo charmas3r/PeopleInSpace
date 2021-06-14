@@ -34,7 +34,7 @@
     <!-- Drawer screens -->
     <string name="drawer_program_setup">Workout Programs</string>
     <string name="drawer_google_sync">Google Sync</string>
-    <string name="drawer_general">General</string>
+    <string name="drawer_general">GENERAL</string>
     <string name="drawer_settings">Settings</string>
     <string name="drawer_rate_this_app">Rate this app</string>
     <string name="drawer_purchases">Purchases</string>
