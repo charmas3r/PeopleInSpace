@@ -2,15 +2,20 @@ package com.sdss.workout.main
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
@@ -69,7 +74,7 @@ val bottomNavigationItems = listOf(
 )
 
 @Composable
-fun MainScreenLayout(){
+fun MainScreenLayout() {
     WorkoutTheme {
         val navController = rememberNavController()
         Scaffold(
@@ -86,7 +91,13 @@ fun MainScreenLayout(){
                     title = { Text(text = "Workout App") },
                 )
             },
-
+            drawerContent = {
+                // Top level composables for header
+                Box(modifier = Modifier.height(120.dp)) {
+                    Image(painter = painterResource(id = R.drawable.workout_item_image_1), contentDescription = null)
+                }
+//                DrawerRow()
+            },
             bottomBar = {
                 BottomNavigation {
                     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -128,3 +139,4 @@ fun MainScreenLayout(){
         }
     }
 }
+

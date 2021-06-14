@@ -33,7 +33,11 @@ fun SetupUnitsScreen(navController: NavController) {
         Column(Modifier.padding(16.dp)) {
             Text(text = stringResource(id = R.string.setup_units_text))
             Spacer(modifier = Modifier.height(16.dp))
-            PrimaryDropdownMenu(items = dropDownItems(), modifier = Modifier.width(120.dp))
+            PrimaryDropdownMenu(
+                items = dropDownItems(),
+                menuModifier = Modifier.width(120.dp),
+                firstItemModifier = Modifier
+            )
         }
     }
 }
