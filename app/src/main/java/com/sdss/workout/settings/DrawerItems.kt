@@ -7,18 +7,16 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.sdss.workout.R
 
 sealed class DrawerItems(
-    val isSelected: Boolean = false,
     val isSeperator: Boolean = false,
     val isHeader: Boolean = false,
     @StringRes val titleRes: Int? = null,
     val icon: ImageVector? = null,
-    val route: String? = null
+    val route: String = "DrawerHome"
 ) {
     object Home : DrawerItems(
         titleRes = R.string.drawer_home,
         icon = Icons.Filled.Home,
-        route = "DrawerHome",
-        isSelected = true
+        route = "DrawerHome"
     )
 
     object ProgramSetup : DrawerItems(

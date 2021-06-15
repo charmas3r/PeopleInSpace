@@ -60,7 +60,7 @@ data class BottomNavigationitem(
 
 val bottomNavigationItems = listOf(
     BottomNavigationitem(
-        MainScreens.WorkoutScreen.route,
+        DrawerItems.Home.route,
         Icons.Default.Star,
         "Workout"
     ),
@@ -76,6 +76,8 @@ val bottomNavigationItems = listOf(
     )
 )
 
+val navDrawerItems = DrawerItems.getAllDrawerItems()
+
 @ExperimentalMaterialApi
 @Composable
 fun MainScreenLayout() {
@@ -83,6 +85,8 @@ fun MainScreenLayout() {
         val navController = rememberNavController()
         val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
         val scope = rememberCoroutineScope()
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStackEntry?.destination
 
         Scaffold(
             topBar = {
@@ -104,47 +108,60 @@ fun MainScreenLayout() {
             },
             scaffoldState = scaffoldState,
             drawerContent = {
-                // Top level composables for header
-                Box(modifier = Modifier
-                    .height(180.dp)
-                    .fillMaxWidth()
-                    .background(MaterialTheme.colors.primary)) {
+                Box(
+                    modifier = Modifier
+                        .height(180.dp)
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colors.primary)
+                ) {
+                    // Top level composables for header
+
                 }
-                DrawerItems.getAllDrawerItems().forEach { drawerItem ->
+                navDrawerItems.forEach { drawerItem ->
                     if (drawerItem.isHeader) {
                         DrawerRow(
                             isListItem = false,
                             rowContent = {
                                 Text(
                                     text = stringResource(id = R.string.drawer_general),
-                                    modifier = Modifier.padding(start = 16.dp, top = 4.dp, bottom = 4.dp),
-                                    style = headerTextStyle())
+                                    modifier = Modifier.padding(
+                                        start = 16.dp,
+                                        top = 4.dp,
+                                        bottom = 4.dp
+                                    ),
+                                    style = headerTextStyle()
+                                )
                             }
                         )
                     } else if (drawerItem.isSeperator) {
                         DrawerRow(
                             isListItem = false,
                             rowContent = {
-                                Divider(color = MaterialTheme.colors.onSurface, thickness = 1.dp, modifier = Modifier.padding(4.dp))
+                                Divider(
+                                    color = MaterialTheme.colors.onSurface,
+                                    thickness = 1.dp,
+                                    modifier = Modifier.padding(4.dp)
+                                )
                             }
                         )
                     } else {
                         DrawerRow(
                             icon = drawerItem.icon,
                             titleRes = drawerItem.titleRes!!,
-                            selected = drawerItem.isSelected,
+                            selected = currentDestination?.hierarchy?.any { it.route == drawerItem.route } == true,
                             onClick = {
-
-                            })
+                                scope.launch {
+                                    scaffoldState.drawerState.close()
+                                }
+                                navController.navigate(drawerItem.route)
+                            }
+                        )
                     }
 
                 }
             },
             bottomBar = {
                 BottomNavigation {
-                    val navBackStackEntry by navController.currentBackStackEntryAsState()
-                    val currentDestination = navBackStackEntry?.destination
-
                     bottomNavigationItems.forEach { screen ->
                         BottomNavigationItem(
                             icon = {
@@ -167,8 +184,8 @@ fun MainScreenLayout() {
                 }
             }
         ) { paddingValues ->
-            NavHost(navController, startDestination = MainScreens.WorkoutScreen.route) {
-                composable(MainScreens.WorkoutScreen.route) {
+            NavHost(navController, startDestination = DrawerItems.Home.route) {
+                composable(DrawerItems.Home.route) {
                     Text(text = "Workout Screen")
                 }
                 composable(MainScreens.ProgressScreen.route) {
@@ -176,6 +193,24 @@ fun MainScreenLayout() {
                 }
                 composable(MainScreens.HistoryScreen.route) {
                     Text(text = "History Screen")
+                }
+                composable(DrawerItems.ProgramSetup.route) {
+                    Text(text = "ProgramSetup")
+                }
+                composable(DrawerItems.GoogleSync.route) {
+                    Text(text = "GoogleSync")
+                }
+                composable(DrawerItems.Settings.route) {
+                    Text(text = "Settings")
+                }
+                composable(DrawerItems.RateThisApp.route) {
+                    Text(text = "RateThisApp")
+                }
+                composable(DrawerItems.Purchases.route) {
+                    Text(text = "Purchases")
+                }
+                composable(DrawerItems.FAQ.route) {
+                    Text(text = "FAQ")
                 }
             }
         }

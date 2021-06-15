@@ -1,7 +1,7 @@
 package com.sdss.workout.main
 
 sealed class MainScreens(val route: String) {
-    object WorkoutScreen : MainScreens("Workout")
+    // see DrawerItems for home screen
     object ProgressScreen : MainScreens("Progress")
     object HistoryScreen : MainScreens("History")
 }
