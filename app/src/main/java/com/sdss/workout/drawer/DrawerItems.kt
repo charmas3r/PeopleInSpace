@@ -1,4 +1,4 @@
-package com.sdss.workout.settings
+package com.sdss.workout.drawer
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
@@ -11,24 +11,24 @@ sealed class DrawerItems(
     val isHeader: Boolean = false,
     @StringRes val titleRes: Int? = null,
     val icon: ImageVector? = null,
-    val route: String = "DrawerHome"
+    val route: String = "Home"
 ) {
     object Home : DrawerItems(
         titleRes = R.string.drawer_home,
         icon = Icons.Filled.Home,
-        route = "DrawerHome"
+        route = "Home Drawer Item"
     )
 
-    object ProgramSetup : DrawerItems(
+    object WorkoutPrograms : DrawerItems(
         titleRes = R.string.drawer_program_setup,
         icon = Icons.Filled.Home,
-        route = "ProgramSetup"
+        route = "Workout Programs Drawer Item"
     )
 
     object GoogleSync : DrawerItems(
         titleRes = R.string.drawer_google_sync,
         icon = Icons.Filled.Home,
-        route = "GoogleSync"
+        route = "Google Sync Drawer Item"
     )
 
     object Seperator : DrawerItems(
@@ -43,32 +43,32 @@ sealed class DrawerItems(
     object Settings : DrawerItems(
         titleRes = R.string.drawer_settings,
         icon = Icons.Filled.Home,
-        route = "Settings"
+        route = "Settings Drawer Item"
     )
 
     object RateThisApp : DrawerItems(
         titleRes = R.string.drawer_rate_this_app,
         icon = Icons.Filled.Home,
-        route = "RateThisApp"
+        route = "Rate This App Drawer Item"
     )
 
     object Purchases : DrawerItems(
         titleRes = R.string.drawer_purchases,
         icon = Icons.Filled.Home,
-        route = "Purchases"
+        route = "Purchases Drawer Item"
     )
 
     object FAQ : DrawerItems(
         titleRes = R.string.drawer_faq,
         icon = Icons.Filled.Home,
-        route = "FAQ"
+        route = "FAQ Drawer Item"
     )
 
     companion object {
         fun getAllDrawerItems(): List<DrawerItems> {
             return listOf(
                 Home,
-                ProgramSetup,
+                WorkoutPrograms,
                 GoogleSync,
                 Seperator,
                 SettingsHeader,

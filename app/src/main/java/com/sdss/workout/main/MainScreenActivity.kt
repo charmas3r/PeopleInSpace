@@ -1,5 +1,6 @@
 package com.sdss.workout.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -25,10 +26,11 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.sdss.workout.R
 import com.sdss.workout.base.BaseActivity
-import com.sdss.workout.settings.DrawerItems
+import com.sdss.workout.drawer.DrawerItems
 import com.sdss.workout.ui.WorkoutTheme
 import com.sdss.workout.ui.drawer.DrawerRow
 import com.sdss.workout.ui.styles.headerTextStyle
+import com.sdss.workout.util.shouldShowBottomBarByCurrentRoute
 import kotlinx.coroutines.launch
 
 @ExperimentalPagerApi
@@ -103,7 +105,9 @@ fun MainScreenLayout() {
                             )
                         }
                     },
-                    title = { Text(text = "Workout App") },
+                    title = {
+                        currentDestination?.route?.let { Text(text = it) }
+                    },
                 )
             },
             scaffoldState = scaffoldState,
@@ -140,7 +144,6 @@ fun MainScreenLayout() {
                                 Divider(
                                     color = MaterialTheme.colors.onSurface,
                                     thickness = 1.dp,
-                                    modifier = Modifier.padding(4.dp)
                                 )
                             }
                         )
@@ -161,25 +164,27 @@ fun MainScreenLayout() {
                 }
             },
             bottomBar = {
-                BottomNavigation {
-                    bottomNavigationItems.forEach { screen ->
-                        BottomNavigationItem(
-                            icon = {
-                                Icon(
-                                    screen.icon,
-                                    contentDescription = screen.iconContentDescription
-                                )
-                            },
-                            selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
-                            onClick = {
-                                navController.navigate(screen.route) {
-                                    popUpTo(navController.graph.findStartDestination().id) {
-                                        saveState = true
+                if (shouldShowBottomBarByCurrentRoute(currentDestination?.route)) {
+                    BottomNavigation {
+                        bottomNavigationItems.forEach { screen ->
+                            BottomNavigationItem(
+                                icon = {
+                                    Icon(
+                                        screen.icon,
+                                        contentDescription = screen.iconContentDescription
+                                    )
+                                },
+                                selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                                onClick = {
+                                    navController.navigate(screen.route) {
+                                        popUpTo(navController.graph.findStartDestination().id) {
+                                            saveState = true
+                                        }
+                                        launchSingleTop = true
                                     }
-                                    launchSingleTop = true
                                 }
-                            }
-                        )
+                            )
+                        }
                     }
                 }
             }
@@ -194,23 +199,23 @@ fun MainScreenLayout() {
                 composable(MainScreens.HistoryScreen.route) {
                     Text(text = "History Screen")
                 }
-                composable(DrawerItems.ProgramSetup.route) {
-                    Text(text = "ProgramSetup")
+                composable(DrawerItems.WorkoutPrograms.route) {
+                    Text(text = "History Screen")
                 }
                 composable(DrawerItems.GoogleSync.route) {
-                    Text(text = "GoogleSync")
+                    Text(text = "GoogleSync Screen")
                 }
                 composable(DrawerItems.Settings.route) {
-                    Text(text = "Settings")
+                    Text(text = "Settings Screen")
                 }
                 composable(DrawerItems.RateThisApp.route) {
-                    Text(text = "RateThisApp")
+                    Text(text = "RateThisApp Screen")
                 }
                 composable(DrawerItems.Purchases.route) {
-                    Text(text = "Purchases")
+                    Text(text = "Purchases Screen")
                 }
                 composable(DrawerItems.FAQ.route) {
-                    Text(text = "FAQ")
+                    Text(text = "FAQ Screen")
                 }
             }
         }

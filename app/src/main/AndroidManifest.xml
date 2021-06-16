@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".main.MainScreenActivity"/>
+        <activity android:name=".drawer.DrawerActivity"/>
     </application>
 
 </manifest>
