@@ -1,6 +1,5 @@
 package com.sdss.workout.main
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -27,6 +26,9 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.sdss.workout.R
 import com.sdss.workout.base.BaseActivity
 import com.sdss.workout.drawer.DrawerItems
+import com.sdss.workout.googlesync.GoogleSyncScreens
+import com.sdss.workout.googlesync.GoogleSyncSettingsScreen
+import com.sdss.workout.googlesync.GoogleSyncSignInScreen
 import com.sdss.workout.ui.WorkoutTheme
 import com.sdss.workout.ui.drawer.DrawerRow
 import com.sdss.workout.ui.styles.headerTextStyle
@@ -80,6 +82,7 @@ val bottomNavigationItems = listOf(
 
 val navDrawerItems = DrawerItems.getAllDrawerItems()
 
+@ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
 fun MainScreenLayout() {
@@ -156,7 +159,13 @@ fun MainScreenLayout() {
                                 scope.launch {
                                     scaffoldState.drawerState.close()
                                 }
-                                navController.navigate(drawerItem.route)
+                                navController.navigate(drawerItem.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
                             }
                         )
                     }
@@ -200,11 +209,9 @@ fun MainScreenLayout() {
                     Text(text = "History Screen")
                 }
                 composable(DrawerItems.WorkoutPrograms.route) {
-                    Text(text = "History Screen")
+                    Text(text = "Programs Screen")
                 }
-                composable(DrawerItems.GoogleSync.route) {
-                    Text(text = "GoogleSync Screen")
-                }
+
                 composable(DrawerItems.Settings.route) {
                     Text(text = "Settings Screen")
                 }
@@ -216,6 +223,14 @@ fun MainScreenLayout() {
                 }
                 composable(DrawerItems.FAQ.route) {
                     Text(text = "FAQ Screen")
+                }
+
+                // Google Sync
+                composable(DrawerItems.GoogleSync.route) {
+                    GoogleSyncSignInScreen(navController = navController)
+                }
+                composable(GoogleSyncScreens.Settings.route) {
+                    GoogleSyncSettingsScreen(navController = navController)
                 }
             }
         }

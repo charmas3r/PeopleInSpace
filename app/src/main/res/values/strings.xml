@@ -41,4 +41,17 @@
     <string name="drawer_faq">FAQ</string>
     <string name="drawer_home">Home</string>
 
+    <!-- Google Sync -->
+    <string name="google_sync_sign_in_title">Log into your Google account to:</string>
+    <string name="google_sync_sign_in_desc">
+        Automatically backup your workout history on app startup\n\n
+        Sync your workouts across different devices\n\n
+        Restore your workouts from another device\n\n
+        Sync with Google Fit\n</string>
+    <string name="google_sync_sign_in_btn">Sign in with Google</string>
+    <string name="google_sync_restore_btn">Restore</string>
+    <string name="google_sync_settings_start_up_item">Sync Data on app startup</string>
+    <string name="google_sync_settings_start_up_desc">* Data will only be synced with internet connection</string>
+    <string name="google_sync_settings_sync_item">Sync with Google Fit</string>
+
 </resources>
