@@ -24,9 +24,8 @@ fun ListScreen(
     Box(
         Modifier
             .fillMaxSize()
-            .padding(start = 16.dp, end = 16.dp)
     ) {
-        LazyColumn(content = content)
+        LazyColumn(content = content, modifier = Modifier.padding(top = 16.dp, bottom = 16.dp))
         Box(modifier = Modifier.align(Alignment.BottomCenter)) {
             Column {
                 PrimaryButton(
