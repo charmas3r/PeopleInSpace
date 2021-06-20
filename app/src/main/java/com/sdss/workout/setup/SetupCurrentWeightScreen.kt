@@ -18,6 +18,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.android.material.color.MaterialColors
 import com.sdss.workout.R
 import com.sdss.workout.intro.IntroScreens
 import com.sdss.workout.main.MainScreenActivity

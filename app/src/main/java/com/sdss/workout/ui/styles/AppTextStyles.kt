@@ -8,8 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 fun titleTextStyle() = TextStyle(
-    fontSize = 18.sp,
-    color = Color.Black
+    fontSize = 18.sp
 )
 
 @Composable

@@ -54,4 +54,22 @@
     <string name="google_sync_settings_start_up_desc">* Data will only be synced with internet connection</string>
     <string name="google_sync_settings_sync_item">Sync with Google Fit</string>
 
+    <!-- Settings -->
+    <string name="settings_app_theme">App Theme</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_report_problem">Report Problem</string>
+    <string name="settings_about">About</string>
+    <string name="settings_data_mgmt">Data Management</string>
+    <string name="settings_privacy_policy">Privacy Policy</string>
+    <string name="settings_app_theme_default">System Default</string>
+    <string name="settings_app_theme_light">Light Theme</string>
+    <string name="settings_app_theme_dark">Dark Theme</string>
+    <string name="settings_notifications_text">Manage your notification settings directly from your phone’s application settings</string>
+    <string name="settings_bug_report_text">If an issue persists that you feel should be brought to our attention we appreciate sharing it with us. </string>
+    <string name="settings_data_mgmt_clear_data">Clear App Data</string>
+    <string name="settings_export_csv">Export CSV</string>
+    <string name="settings_import_csv">Import CSV</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_first_version">0.1</string>
+    
 </resources>

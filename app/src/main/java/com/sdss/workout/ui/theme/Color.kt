@@ -1,4 +1,4 @@
-package com.sdss.workout.ui
+package com.sdss.workout.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -16,8 +16,13 @@ val lightTeal = Color(0xFF7CD3E2)
 
 val gray = Color(0xFF808080)
 val darkGray = Color(0xFF545454)
-val nightGray = Color(0xFF1A1A1A)
+val nightGray = Color(0xFF121212)
 val lightGray = Color(0xFFAFAFAF)
+
+val text = Color(0xFF212121)
+val lightText = Color(0xFF757575)
+
+val white = Color(0xFFFFFFFF)
 
 val errorRed = Color(0xFFE15353)
 

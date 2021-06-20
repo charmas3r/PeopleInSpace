@@ -14,13 +14,13 @@ import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.sdss.workout.base.BaseActivity
-import com.sdss.workout.intro.IntroScreens
-import com.sdss.workout.intro.WelcomeCarousel
 import com.sdss.workout.setup.SetupCurrentWeightScreen
 import com.sdss.workout.setup.SetupFinishScreen
 import com.sdss.workout.setup.SetupOneRepMaxScreen
 import com.sdss.workout.setup.SetupUnitsScreen
-import com.sdss.workout.ui.WorkoutTheme
+import com.sdss.workout.ui.theme.WorkoutTheme
+import com.sdss.workout.ui.theme.nightGray
+import com.sdss.workout.ui.theme.white
 
 @ExperimentalPagerApi
 class IntroActivity : BaseActivity() {
@@ -30,9 +30,10 @@ class IntroActivity : BaseActivity() {
             ProvideWindowInsets {
                 val systemUiController = rememberSystemUiController()
                 val useDarkIcons = MaterialTheme.colors.isLight
+                val systemBarColor = if (useDarkIcons) nightGray else white
                 SideEffect {
                     systemUiController.setSystemBarsColor(
-                        color = Color.Transparent,
+                        color = systemBarColor,
                         darkIcons = useDarkIcons
                     )
                 }

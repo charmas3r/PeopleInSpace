@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,7 +49,8 @@ fun GoogleSyncSignInScreen(navController: NavController?) {
                 Text(
                     text = stringResource(id = R.string.google_sync_sign_in_title),
                     textAlign = TextAlign.Center,
-                    style = titleTextStyle()
+                    style = titleTextStyle(),
+                    fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(

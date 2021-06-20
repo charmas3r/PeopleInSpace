@@ -22,13 +22,13 @@ sealed class DrawerItems(
     object WorkoutPrograms : DrawerItems(
         titleRes = R.string.drawer_program_setup,
         icon = Icons.Filled.Home,
-        route = "Workout Programs Drawer Item"
+        route = "Programs"
     )
 
     object GoogleSync : DrawerItems(
         titleRes = R.string.drawer_google_sync,
         icon = Icons.Filled.Home,
-        route = "Google Sync Drawer Item"
+        route = "Google Sync"
     )
 
     object Seperator : DrawerItems(
@@ -43,25 +43,25 @@ sealed class DrawerItems(
     object Settings : DrawerItems(
         titleRes = R.string.drawer_settings,
         icon = Icons.Filled.Home,
-        route = "Settings Drawer Item"
+        route = "Settings"
     )
 
     object RateThisApp : DrawerItems(
         titleRes = R.string.drawer_rate_this_app,
         icon = Icons.Filled.Home,
-        route = "Rate This App Drawer Item"
+        route = "Rate This App"
     )
 
     object Purchases : DrawerItems(
         titleRes = R.string.drawer_purchases,
         icon = Icons.Filled.Home,
-        route = "Purchases Drawer Item"
+        route = "Purchases"
     )
 
     object FAQ : DrawerItems(
         titleRes = R.string.drawer_faq,
         icon = Icons.Filled.Home,
-        route = "FAQ Drawer Item"
+        route = "FAQ"
     )
 
     companion object {

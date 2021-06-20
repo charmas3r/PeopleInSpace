@@ -29,9 +29,11 @@ import com.sdss.workout.drawer.DrawerItems
 import com.sdss.workout.googlesync.GoogleSyncScreens
 import com.sdss.workout.googlesync.GoogleSyncSettingsScreen
 import com.sdss.workout.googlesync.GoogleSyncSignInScreen
-import com.sdss.workout.ui.WorkoutTheme
+import com.sdss.workout.program.ProgramSetupScreen
+import com.sdss.workout.settings.*
 import com.sdss.workout.ui.drawer.DrawerRow
 import com.sdss.workout.ui.styles.headerTextStyle
+import com.sdss.workout.ui.theme.WorkoutTheme
 import com.sdss.workout.util.shouldShowBottomBarByCurrentRoute
 import kotlinx.coroutines.launch
 
@@ -96,6 +98,7 @@ fun MainScreenLayout() {
         Scaffold(
             topBar = {
                 TopAppBar(
+                    elevation = if (currentDestination?.route == DrawerItems.WorkoutPrograms.route) 0.dp else 4.dp,
                     navigationIcon = {
                         IconButton(onClick = {
                             scope.launch {
@@ -119,7 +122,7 @@ fun MainScreenLayout() {
                     modifier = Modifier
                         .height(180.dp)
                         .fillMaxWidth()
-                        .background(MaterialTheme.colors.primary)
+                        .background(MaterialTheme.colors.secondaryVariant)
                 ) {
                     // Top level composables for header
 
@@ -136,7 +139,8 @@ fun MainScreenLayout() {
                                         top = 4.dp,
                                         bottom = 4.dp
                                     ),
-                                    style = headerTextStyle()
+                                    style = headerTextStyle(),
+                                    color = MaterialTheme.colors.onBackground
                                 )
                             }
                         )
@@ -145,7 +149,7 @@ fun MainScreenLayout() {
                             isListItem = false,
                             rowContent = {
                                 Divider(
-                                    color = MaterialTheme.colors.onSurface,
+                                    color = MaterialTheme.colors.onBackground,
                                     thickness = 1.dp,
                                 )
                             }
@@ -174,9 +178,12 @@ fun MainScreenLayout() {
             },
             bottomBar = {
                 if (shouldShowBottomBarByCurrentRoute(currentDestination?.route)) {
-                    BottomNavigation {
+                    BottomNavigation(
+                        backgroundColor = MaterialTheme.colors.primary
+                    ) {
                         bottomNavigationItems.forEach { screen ->
                             BottomNavigationItem(
+                                selectedContentColor = MaterialTheme.colors.secondary,
                                 icon = {
                                     Icon(
                                         screen.icon,
@@ -208,12 +215,10 @@ fun MainScreenLayout() {
                 composable(MainScreens.HistoryScreen.route) {
                     Text(text = "History Screen")
                 }
-                composable(DrawerItems.WorkoutPrograms.route) {
-                    Text(text = "Programs Screen")
-                }
 
-                composable(DrawerItems.Settings.route) {
-                    Text(text = "Settings Screen")
+                // Navigation Drawer
+                composable(DrawerItems.WorkoutPrograms.route) {
+                    ProgramSetupScreen(navController = navController)
                 }
                 composable(DrawerItems.RateThisApp.route) {
                     Text(text = "RateThisApp Screen")
@@ -231,6 +236,29 @@ fun MainScreenLayout() {
                 }
                 composable(GoogleSyncScreens.Settings.route) {
                     GoogleSyncSettingsScreen(navController = navController)
+                }
+
+                // Settings
+                composable(DrawerItems.Settings.route) {
+                    GeneralSettingsScreen(navController = navController)
+                }
+                composable(SettingsScreens.About.route) {
+                    AboutSettingsScreen()
+                }
+                composable(SettingsScreens.PrivacyPolicy.route) {
+                    Text(text = "Privacy Policy")
+                }
+                composable(SettingsScreens.AppTheme.route) {
+                    AppThemeSettingsScreen()
+                }
+                composable(SettingsScreens.Notifications.route) {
+                    NotificationsSettingsScreen()
+                }
+                composable(SettingsScreens.DataManagement.route) {
+                    DataMgmtSettingsScreen()
+                }
+                composable(SettingsScreens.ReportBug.route) {
+                    BugReportSettingsScreen()
                 }
             }
         }

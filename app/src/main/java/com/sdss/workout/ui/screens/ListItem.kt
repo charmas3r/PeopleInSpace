@@ -3,10 +3,7 @@ package com.sdss.workout.ui.screens
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Switch
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,6 +24,7 @@ fun ListItem(
     @StringRes descRes: Int? = null,
     hasSwitch: Boolean = false,
     icon: ImageVector? = null,
+    hasArrow: Boolean = false,
     onSwitchClick: (isSwitch: Boolean) -> Unit = { },
     onListItemClick: () -> Unit = { }
 ) {
@@ -42,25 +40,28 @@ fun ListItem(
         }
     }
 
-    Column(modifier = Modifier
-        .padding(bottom = 4.dp)
-        .clickable { onListItemClick.invoke() }
-        .height(64.dp),
-        verticalArrangement = Arrangement.Center) {
+    Column(
+        modifier = Modifier
+            .padding(bottom = if (descRes != null) 4.dp else 0.dp)
+            .height(56.dp)
+            .clickable { onListItemClick.invoke() },
+        verticalArrangement = Arrangement.Center
+    ) {
         Row(Modifier.fillMaxWidth()) {
             Text(
                 text = stringResource(id = titleRes),
                 style = TextStyle(fontSize = 18.sp),
                 modifier = Modifier.padding(start = 16.dp)
             )
-            when {
-                (hasSwitch) -> {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 4.dp, end = 16.dp),
-                        horizontalArrangement = Arrangement.End
-                    ) {
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 4.dp, end = if (hasArrow) 4.dp else 16.dp),
+                horizontalArrangement = Arrangement.End
+            ) {
+                when {
+                    (hasSwitch) -> {
                         Switch(
                             checked = checkedState.value,
                             onCheckedChange = {
@@ -68,18 +69,25 @@ fun ListItem(
                                 onSwitchClick.invoke(it)
                             })
                     }
-
-                }
-                (icon != null) -> {
-                    Icon(imageVector = icon, contentDescription = null)
+                    (icon != null) -> {
+                        Icon(
+                            imageVector = icon,
+                            contentDescription = null,
+                            tint = if (hasArrow) MaterialTheme.colors.onBackground else LocalContentColor.current.copy(
+                                alpha = LocalContentAlpha.current
+                            )
+                        )
+                    }
                 }
             }
+
         }
         if (descRes != null) {
             Text(
                 text = stringResource(id = descRes),
                 style = TextStyle(fontSize = 15.sp),
-                modifier = Modifier.padding(start = 16.dp)
+                modifier = Modifier.padding(start = 16.dp),
+                color = MaterialTheme.colors.onBackground
             )
         }
     }
