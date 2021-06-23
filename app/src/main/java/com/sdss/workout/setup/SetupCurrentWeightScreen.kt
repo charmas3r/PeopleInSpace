@@ -3,6 +3,7 @@ package com.sdss.workout.setup
 import android.content.Intent
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -39,7 +40,7 @@ fun SetupCurrentWeightScreen(navController: NavController) {
         Column(Modifier.padding(16.dp)) {
             Text(text = stringResource(id = R.string.setup_weight_text))
             Spacer(modifier = Modifier.height(8.dp))
-            TextField(
+            OutlinedTextField(
                 value = textState.value,
                 onValueChange = { textState.value = it },
                 label = { Text(stringResource(id = R.string.tf_weight)) },

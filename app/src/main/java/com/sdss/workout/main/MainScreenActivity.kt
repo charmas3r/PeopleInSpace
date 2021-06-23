@@ -2,15 +2,19 @@ package com.sdss.workout.main
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -29,7 +33,7 @@ import com.sdss.workout.drawer.DrawerItems
 import com.sdss.workout.googlesync.GoogleSyncScreens
 import com.sdss.workout.googlesync.GoogleSyncSettingsScreen
 import com.sdss.workout.googlesync.GoogleSyncSignInScreen
-import com.sdss.workout.program.ProgramSetupScreen
+import com.sdss.workout.program.*
 import com.sdss.workout.settings.*
 import com.sdss.workout.ui.drawer.DrawerRow
 import com.sdss.workout.ui.styles.headerTextStyle
@@ -39,6 +43,7 @@ import kotlinx.coroutines.launch
 
 @ExperimentalPagerApi
 class MainScreenActivity : BaseActivity() {
+    @ExperimentalFoundationApi
     @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +89,7 @@ val bottomNavigationItems = listOf(
 
 val navDrawerItems = DrawerItems.getAllDrawerItems()
 
+@ExperimentalFoundationApi
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
@@ -94,11 +100,14 @@ fun MainScreenLayout() {
         val scope = rememberCoroutineScope()
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
+        var toState by remember { mutableStateOf(MultiFabState.COLLAPSED) }
 
         Scaffold(
             topBar = {
                 TopAppBar(
-                    elevation = if (currentDestination?.route == DrawerItems.WorkoutPrograms.route) 0.dp else 4.dp,
+                    elevation = if (currentDestination?.route == DrawerItems.WorkoutPrograms.route
+                        || currentDestination?.route == ProgramScreens.Overview.route
+                    ) 0.dp else 4.dp,
                     navigationIcon = {
                         IconButton(onClick = {
                             scope.launch {
@@ -112,9 +121,53 @@ fun MainScreenLayout() {
                         }
                     },
                     title = {
-                        currentDestination?.route?.let { Text(text = it) }
-                    },
+                        if (currentDestination?.route == ProgramScreens.OneRepMax.route
+                            || currentDestination?.route == ProgramScreens.RepeatCycle.route
+                        ) {
+                            Text(text = stringResource(id = R.string.programs_setup))
+                        } else {
+                            currentDestination?.route?.let { Text(text = it) }
+                        }
+                    }
                 )
+            },
+            floatingActionButton = {
+                when (currentDestination?.route) {
+                    DrawerItems.WorkoutPrograms.route -> {
+                        ExtendedFloatingActionButton(
+                            icon = { Icon(Icons.Filled.Add,null) },
+                            text = {
+                                Text(
+                                    text = stringResource(id = R.string.programs_create_btn),
+                                    color = MaterialTheme.colors.onSecondary
+                                )
+                            },
+                            onClick = {
+                                navController.navigate(ProgramScreens.Create.route)
+                            },
+                            elevation = FloatingActionButtonDefaults.elevation(8.dp)
+                        )
+                    }
+                    ProgramScreens.EditDay.route -> {
+                        MultiFloatingActionButton(
+                            fabIcon = ImageBitmap.imageResource(R.drawable.ic_add),
+                            listOf(
+                                MultiFabItem(
+                                    "new",
+                                    ImageBitmap.imageResource(R.drawable.ic_add), "Add Exercise"
+                                ),
+                                MultiFabItem(
+                                    "existing",
+                                    ImageBitmap.imageResource(R.drawable.ic_add), "Add Rest Break"
+                                )
+                            ), toState, true, { state ->
+                                toState = state
+                            }
+                        ) {
+
+                        }
+                    }
+                }
             },
             scaffoldState = scaffoldState,
             drawerContent = {
@@ -217,9 +270,6 @@ fun MainScreenLayout() {
                 }
 
                 // Navigation Drawer
-                composable(DrawerItems.WorkoutPrograms.route) {
-                    ProgramSetupScreen(navController = navController)
-                }
                 composable(DrawerItems.RateThisApp.route) {
                     Text(text = "RateThisApp Screen")
                 }
@@ -259,6 +309,26 @@ fun MainScreenLayout() {
                 }
                 composable(SettingsScreens.ReportBug.route) {
                     BugReportSettingsScreen()
+                }
+
+                // Programs
+                composable(DrawerItems.WorkoutPrograms.route) {
+                    InitialProgramSetupScreen(navController = navController)
+                }
+                composable(ProgramScreens.OneRepMax.route) {
+                    OneRepMaxProgramSetupScreen(navController = navController)
+                }
+                composable(ProgramScreens.RepeatCycle.route) {
+                    RepeatProgramSetupScreen(navController = navController)
+                }
+                composable(ProgramScreens.Overview.route) {
+                    ProgramOverviewScreen(navController = navController)
+                }
+                composable(ProgramScreens.Create.route) {
+                    CreateProgramScreen(navController = navController)
+                }
+                composable(ProgramScreens.EditDay.route) {
+                    EditDayProgramScreen(navController = navController)
                 }
             }
         }

@@ -1,4 +1,4 @@
-package com.sdss.workout.ui.screens
+package com.sdss.workout.ui.lists
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable

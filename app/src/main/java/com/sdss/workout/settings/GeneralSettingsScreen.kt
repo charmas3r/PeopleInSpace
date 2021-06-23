@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.sdss.workout.settings.SettingsScreens.Companion.getAllSettingsScreens
 import com.sdss.workout.ui.theme.WorkoutTheme
-import com.sdss.workout.ui.screens.ListItem
+import com.sdss.workout.ui.lists.ListItem
 
 val items = getAllSettingsScreens()
 

@@ -24,6 +24,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.sdss.workout.R
 import com.sdss.workout.intro.IntroScreens
 import com.sdss.workout.main.MainScreenActivity
+import com.sdss.workout.program.OneRepMaxProgramSetup
 import com.sdss.workout.ui.buttons.DropdownMenuItemContent
 import com.sdss.workout.ui.buttons.PrimaryDropdownMenu
 
@@ -37,139 +38,10 @@ fun SetupOneRepMaxScreen(navController: NavController?) {
             context.startActivity(Intent(context, MainScreenActivity::class.java))
         },
         onBackClick = { navController?.popBackStack() }) {
-        val benchState = remember { mutableStateOf(TextFieldValue()) }
-        val squatState = remember { mutableStateOf(TextFieldValue()) }
-        val deadState = remember { mutableStateOf(TextFieldValue()) }
-        val shoulState = remember { mutableStateOf(TextFieldValue()) }
-
-        Column(Modifier.padding(16.dp)) {
-            Text(text = stringResource(id = R.string.setup_one_rep_max_text))
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Row {
-                TextField(
-                    value = benchState.value,
-                    onValueChange = { benchState.value = it },
-                    label = { Text(stringResource(id = R.string.lift_bench_press)) },
-                    modifier = Modifier
-                        .fillMaxWidth(.5f),
-                    singleLine = true,
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Number
-                    ),
-                    colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = Color.Transparent
-                    )
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                PrimaryDropdownMenu(
-                    items = dropDownItems(),
-                    menuModifier = Modifier.width(60.dp),
-                    firstItemModifier = Modifier
-                        .height(60.dp)
-                        .padding(start = 16.dp, top = 32.dp)
-                )
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-            Row {
-                TextField(
-                    value = squatState.value,
-                    onValueChange = { squatState.value = it },
-                    label = { Text(stringResource(id = R.string.lift_squats)) },
-                    modifier = Modifier
-                        .fillMaxWidth(.5f),
-                    singleLine = true,
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Number
-                    ),
-                    colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = Color.Transparent
-                    )
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                PrimaryDropdownMenu(
-                    items = dropDownItems(),
-                    menuModifier = Modifier.width(60.dp),
-                    firstItemModifier = Modifier
-                        .height(60.dp)
-                        .padding(start = 16.dp, top = 32.dp)
-                )
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-            Row {
-                TextField(
-                    value = deadState.value,
-                    onValueChange = { deadState.value = it },
-                    label = { Text(stringResource(id = R.string.lift_deadlifts)) },
-                    modifier = Modifier
-                        .fillMaxWidth(.5f),
-                    singleLine = true,
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Number
-                    ),
-                    colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = Color.Transparent
-                    )
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                PrimaryDropdownMenu(
-                    items = dropDownItems(),
-                    menuModifier = Modifier.width(60.dp),
-                    firstItemModifier = Modifier
-                        .height(60.dp)
-                        .padding(start = 16.dp, top = 32.dp)
-                )
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-            Row {
-                TextField(
-                    value = shoulState.value,
-                    onValueChange = { shoulState.value = it },
-                    label = { Text(stringResource(id = R.string.lift_shoulder_press)) },
-                    modifier = Modifier
-                        .fillMaxWidth(.5f),
-                    singleLine = true,
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Number
-                    ),
-                    colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = Color.Transparent
-                    )
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                PrimaryDropdownMenu(
-                    items = dropDownItems(),
-                    menuModifier = Modifier.width(60.dp),
-                    firstItemModifier = Modifier
-                        .height(60.dp)
-                        .padding(start = 16.dp, top = 32.dp)
-                )
-            }
-        }
+        OneRepMaxProgramSetup()
     }
 }
 
-private fun dropDownItems(): List<DropdownMenuItemContent> {
-    return listOf(
-        DropdownMenuItemContent(
-            isFirstPosition = true,
-            titleRes = R.string.units_si,
-            onClick = {
-                Log.d("DropdownMenu", "menu item clicked")
-            }
-        ),
-        DropdownMenuItemContent(
-            isFirstPosition = false,
-            titleRes = R.string.units_std,
-            onClick = {
-                Log.d("DropdownMenu", "menu item clicked")
-            },
-        )
-    )
-}
 
 @ExperimentalPagerApi
 @Preview

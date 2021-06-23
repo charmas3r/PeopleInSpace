@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.sdss.workout.R
 import com.sdss.workout.settings.AppThemeOptions.Companion.getOptions
-import com.sdss.workout.ui.screens.ListItem
+import com.sdss.workout.ui.lists.ListItem
 
 @Composable
 fun AppThemeSettingsScreen() {

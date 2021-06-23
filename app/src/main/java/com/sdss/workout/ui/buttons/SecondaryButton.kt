@@ -31,3 +31,26 @@ internal fun SecondaryButton(
         Text(text = text, color = MaterialTheme.colors.secondary)
     }
 }
+
+@Composable
+internal fun SecondaryVariantButton(
+    text: String = "Secondary Button",
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    TextButton(
+        colors =  ButtonDefaults.buttonColors(
+            backgroundColor = MaterialTheme.colors.primary
+        ),
+        onClick = onClick,
+        shape = RoundedCornerShape(50),
+        modifier = modifier,
+        elevation = ButtonDefaults.elevation(
+            defaultElevation = 0.dp,
+            pressedElevation = 2.dp,
+            disabledElevation = 0.dp
+        )
+    ) {
+        Text(text = text, color = MaterialTheme.colors.error)
+    }
+}
