@@ -94,5 +94,7 @@
     <string name="programs_week">Week %1$d</string>
     <string name="program_add_day">+ Add Day</string>
     <string name="program_add_week">Add Week</string>
+    <string name="program_add_rest_item">Add Rest Break</string>
+    <string name="program_add_exercise_item">Add Exercise</string>
 
 </resources>

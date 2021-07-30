@@ -26,7 +26,7 @@ import com.sdss.workout.setup.SetupFinishScreen
 import com.sdss.workout.ui.styles.titleTextStyle
 
 @Composable
-fun GoogleSyncSignInScreen(navController: NavController?) {
+fun GoogleSyncSignInScreen(onClick: () -> Unit) {
 
     val googleBtnColors = ButtonDefaults.buttonColors(
         backgroundColor = MaterialTheme.colors.surface,
@@ -62,9 +62,7 @@ fun GoogleSyncSignInScreen(navController: NavController?) {
         Box(modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 32.dp)) {
             Button(
                 colors = googleBtnColors,
-                onClick = {
-                          navController?.navigate(GoogleSyncScreens.Settings.route)
-                },
+                onClick = onClick,
                 modifier = Modifier.fillMaxWidth(.75f)
             ) {
                 Image(
@@ -86,6 +84,8 @@ fun GoogleSyncSignInScreen(navController: NavController?) {
 @Composable
 fun GoogleSyncPreview() {
     MaterialTheme {
-        GoogleSyncSignInScreen(null)
+        GoogleSyncSignInScreen {
+
+        }
     }
 }

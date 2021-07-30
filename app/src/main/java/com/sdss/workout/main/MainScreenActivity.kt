@@ -33,12 +33,14 @@ import com.sdss.workout.drawer.DrawerItems
 import com.sdss.workout.googlesync.GoogleSyncScreens
 import com.sdss.workout.googlesync.GoogleSyncSettingsScreen
 import com.sdss.workout.googlesync.GoogleSyncSignInScreen
+import com.sdss.workout.navigation.shouldShowBackArrowInTopAppBar
 import com.sdss.workout.program.*
 import com.sdss.workout.settings.*
 import com.sdss.workout.ui.drawer.DrawerRow
 import com.sdss.workout.ui.styles.headerTextStyle
 import com.sdss.workout.ui.theme.WorkoutTheme
 import com.sdss.workout.util.shouldShowBottomBarByCurrentRoute
+import com.sdss.workout.workout.WorkoutScreen
 import kotlinx.coroutines.launch
 
 @ExperimentalPagerApi
@@ -101,23 +103,44 @@ fun MainScreenLayout() {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
         var toState by remember { mutableStateOf(MultiFabState.COLLAPSED) }
+        val isBackNavigationAllowed by remember { mutableStateOf(currentDestination?.route?.let {
+            shouldShowBackArrowInTopAppBar(
+                currentRoute = it
+            )
+        }) }
 
         Scaffold(
             topBar = {
                 TopAppBar(
                     elevation = if (currentDestination?.route == DrawerItems.WorkoutPrograms.route
                         || currentDestination?.route == ProgramScreens.Overview.route
+                        || currentDestination?.route == ProgramScreens.ExerciseSelection.route
                     ) 0.dp else 4.dp,
                     navigationIcon = {
                         IconButton(onClick = {
-                            scope.launch {
-                                scaffoldState.drawerState.open()
+                            if (isBackNavigationAllowed == true) {
+                                navController.popBackStack()
+                            } else {
+                                scope.launch {
+                                    scaffoldState.drawerState.open()
+                                }
                             }
                         }) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_baseline_menu_24),
-                                contentDescription = null,
-                            )
+                            if (isBackNavigationAllowed == true) {
+                                Icon(
+                                    painter = if (MaterialTheme.colors.isLight) {
+                                        painterResource(id = R.drawable.ic_baseline_arrow_back_24)
+                                    } else {
+                                        painterResource(id = R.drawable.ic_baseline_arrow_back_dm_24)
+                                    },
+                                    contentDescription = null
+                                )
+                            } else {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.ic_baseline_menu_24),
+                                    contentDescription = null,
+                                )
+                            }
                         }
                     },
                     title = {
@@ -133,9 +156,24 @@ fun MainScreenLayout() {
             },
             floatingActionButton = {
                 when (currentDestination?.route) {
+                    DrawerItems.Home.route -> {
+                        ExtendedFloatingActionButton(
+                            icon = { Icon(Icons.Filled.Add, null) },
+                            text = {
+                                Text(
+                                    text = stringResource(id = R.string.programs_create_btn),
+                                    color = MaterialTheme.colors.onSecondary
+                                )
+                            },
+                            onClick = {
+//                                navController.navigate(ProgramScreens.Create.route)
+                            },
+                            elevation = FloatingActionButtonDefaults.elevation(8.dp)
+                        )
+                    }
                     DrawerItems.WorkoutPrograms.route -> {
                         ExtendedFloatingActionButton(
-                            icon = { Icon(Icons.Filled.Add,null) },
+                            icon = { Icon(Icons.Filled.Add, null) },
                             text = {
                                 Text(
                                     text = stringResource(id = R.string.programs_create_btn),
@@ -150,21 +188,30 @@ fun MainScreenLayout() {
                     }
                     ProgramScreens.EditDay.route -> {
                         MultiFloatingActionButton(
-                            fabIcon = ImageBitmap.imageResource(R.drawable.ic_add),
-                            listOf(
+                            fabIcon = ImageBitmap.imageResource(R.drawable.ic_add_white),
+                            items = listOf(
                                 MultiFabItem(
-                                    "new",
-                                    ImageBitmap.imageResource(R.drawable.ic_add), "Add Exercise"
+                                    identifier = "addExercise",
+                                    icon = ImageBitmap.imageResource(R.drawable.ic_add_white),
+                                    label = stringResource(id = R.string.program_add_exercise_item)
                                 ),
                                 MultiFabItem(
-                                    "existing",
-                                    ImageBitmap.imageResource(R.drawable.ic_add), "Add Rest Break"
+                                    identifier = "addRest",
+                                    icon = ImageBitmap.imageResource(R.drawable.ic_add_white),
+                                    label = stringResource(id = R.string.program_add_rest_item)
                                 )
                             ), toState, true, { state ->
                                 toState = state
                             }
-                        ) {
+                        ) { item ->
+                            when (item.identifier) {
+                                "addExercise" -> {
+                                    navController.navigate(ProgramScreens.ExerciseSelection.route)
+                                }
+                                "addRest" -> {
 
+                                }
+                            }
                         }
                     }
                 }
@@ -260,7 +307,9 @@ fun MainScreenLayout() {
         ) { paddingValues ->
             NavHost(navController, startDestination = DrawerItems.Home.route) {
                 composable(DrawerItems.Home.route) {
-                    Text(text = "Workout Screen")
+                    WorkoutScreen {
+                        navController.navigate(ProgramScreens.EditDay.route)
+                    }
                 }
                 composable(MainScreens.ProgressScreen.route) {
                     Text(text = "Progress Screen")
@@ -282,10 +331,12 @@ fun MainScreenLayout() {
 
                 // Google Sync
                 composable(DrawerItems.GoogleSync.route) {
-                    GoogleSyncSignInScreen(navController = navController)
+                    GoogleSyncSignInScreen {
+                        navController.navigate(GoogleSyncScreens.Settings.route)
+                    }
                 }
                 composable(GoogleSyncScreens.Settings.route) {
-                    GoogleSyncSettingsScreen(navController = navController)
+                    GoogleSyncSettingsScreen()
                 }
 
                 // Settings
@@ -328,7 +379,10 @@ fun MainScreenLayout() {
                     CreateProgramScreen(navController = navController)
                 }
                 composable(ProgramScreens.EditDay.route) {
-                    EditDayProgramScreen(navController = navController)
+                    EditDayProgramScreen()
+                }
+                composable(ProgramScreens.ExerciseSelection.route) {
+                    ExerciseSelectionScreen(navController = navController)
                 }
             }
         }

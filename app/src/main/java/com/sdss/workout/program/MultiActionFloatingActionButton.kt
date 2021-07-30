@@ -13,7 +13,6 @@ import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,7 +39,9 @@ fun MultiFloatingActionButton(
     onFabItemClicked: (item: MultiFabItem) -> Unit
 ) {
     val transition: Transition<MultiFabState> = updateTransition(targetState = toState)
-    val scale: Float by transition.animateFloat { state ->
+    val scale: Float by transition.animateFloat(
+        label = ""
+    ) { state ->
         if (state == MultiFabState.EXPANDED) 56f else 0f
     }
     val alpha: Float by transition.animateFloat(
@@ -57,7 +58,9 @@ fun MultiFloatingActionButton(
     ) { state ->
         if (state == MultiFabState.EXPANDED) 2.dp else 0.dp
     }
-    val rotation: Float by transition.animateFloat { state ->
+    val rotation: Float by transition.animateFloat(
+        label = ""
+    ) { state ->
         if (state == MultiFabState.EXPANDED) 45f else 0f
     }
     Column(horizontalAlignment = Alignment.End) {

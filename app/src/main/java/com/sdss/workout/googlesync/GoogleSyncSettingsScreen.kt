@@ -7,7 +7,7 @@ import com.sdss.workout.ui.lists.ListItem
 import com.sdss.workout.ui.screens.ListScreen
 
 @Composable
-fun GoogleSyncSettingsScreen(navController: NavController?) {
+fun GoogleSyncSettingsScreen() {
         ListScreen(
             onPrimaryClick = { /*TODO*/ },
             onSecondaryClick = { /*TODO*/ }

@@ -6,4 +6,5 @@ sealed class ProgramScreens(val route: String) {
     object Overview: ProgramScreens("Overview")
     object Create: ProgramScreens("Create Program")
     object EditDay: ProgramScreens("Edit Workout")
+    object ExerciseSelection: ProgramScreens("Add Exercise")
 }
