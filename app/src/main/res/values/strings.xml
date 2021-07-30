@@ -54,4 +54,47 @@
     <string name="google_sync_settings_start_up_desc">* Data will only be synced with internet connection</string>
     <string name="google_sync_settings_sync_item">Sync with Google Fit</string>
 
+    <!-- Settings -->
+    <string name="settings_app_theme">App Theme</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_report_problem">Report Problem</string>
+    <string name="settings_about">About</string>
+    <string name="settings_data_mgmt">Data Management</string>
+    <string name="settings_privacy_policy">Privacy Policy</string>
+    <string name="settings_app_theme_default">System Default</string>
+    <string name="settings_app_theme_light">Light Theme</string>
+    <string name="settings_app_theme_dark">Dark Theme</string>
+    <string name="settings_notifications_text">Manage your notification settings directly from your phone’s application settings</string>
+    <string name="settings_bug_report_text">If an issue persists that you feel should be brought to our attention we appreciate sharing it with us. </string>
+    <string name="settings_data_mgmt_clear_data">Clear App Data</string>
+    <string name="settings_export_csv">Export CSV</string>
+    <string name="settings_import_csv">Import CSV</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_first_version">0.1</string>
+
+    <!-- Programs -->
+    <string name="programs_create_btn">Create New</string>
+    <string name="programs_beginner_531">Basic 5/3/1</string>
+    <string name="programs_beginner_desc">Description</string>
+    <string name="programs_setup_btn">Setup</string>
+    <string name="programs_overview_btn">Overview</string>
+    <string name="programs_setup">Setup Program</string>
+    <string name="programs_edit">Edit Program</string>
+    <string name="programs_repeat_title">How many times would you like to repeat this program?</string>
+    <string name="programs_no_repeat">Don\'t repeat</string>
+    <string name="programs_repeats_one_time">Just once</string>
+    <string name="programs_repeat_two_times">2 times</string>
+    <string name="programs_repeat_three_times">3 times</string>
+    <string name="programs_repeat_four_times">4 times</string>
+    <string name="programs_finish_btn">Finish</string>
+    <string name="programs_edit_program_btn">Edit Current Program</string>
+    <string name="programs_end_program_btn">End This Program</string>
+    <string name="programs_assistance_avail">Assistance Workouts Available</string>
+    <string name="programs_create_desc">Enter description</string>
+    <string name="programs_week">Week %1$d</string>
+    <string name="program_add_day">+ Add Day</string>
+    <string name="program_add_week">Add Week</string>
+    <string name="program_add_rest_item">Add Rest Break</string>
+    <string name="program_add_exercise_item">Add Exercise</string>
+
 </resources>

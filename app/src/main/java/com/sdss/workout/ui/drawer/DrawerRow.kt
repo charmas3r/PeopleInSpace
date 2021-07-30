@@ -22,15 +22,19 @@ internal fun DrawerRow(
     onClick: () -> Unit = {}
 ) {
     val background =
-        if (selected) MaterialTheme.colors.primary.copy(alpha = 0.12f) else Color.Transparent
-    val textColor = if (selected) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
+        if (selected) MaterialTheme.colors.secondary.copy(alpha = 0.1f) else Color.Transparent
+    val textColor = if (selected) MaterialTheme.colors.secondaryVariant else MaterialTheme.colors.onSurface
     if (isListItem) {
         ListItem(modifier = Modifier
             .clickable { onClick() }
             .background(background),
             icon = {
                 if (icon != null) {
-                    Icon(imageVector = icon, contentDescription = null)
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = null,
+                        tint = if (selected) MaterialTheme.colors.secondary else LocalContentColor.current.copy(alpha = LocalContentAlpha.current)
+                    )
                 }
             }) {
             Text(color = textColor, text = stringResource(id = titleRes))

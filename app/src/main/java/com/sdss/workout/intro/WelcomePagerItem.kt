@@ -42,7 +42,7 @@ internal fun WelcomePagerItem(
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = stringResource(id = welcomeDescByPageNumber(page)),
-            color = MaterialTheme.colors.onSurface,
+            color = MaterialTheme.colors.onBackground,
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.CenterHorizontally)

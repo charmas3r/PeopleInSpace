@@ -11,7 +11,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.sdss.workout.ui.WorkoutTheme
 import com.sdss.workout.R
 import com.sdss.workout.ui.buttons.PrimaryButton
 import com.sdss.workout.ui.buttons.SecondaryButton
@@ -45,33 +44,52 @@ fun SetupScreenLayout(
             )
         }
     ) {
-        Box(
-            Modifier
-                .fillMaxSize()
-                .padding(start = 16.dp, end = 16.dp)
-        ) {
-            Box(content = content, modifier = Modifier
-                .align(Alignment.TopStart)
-                .fillMaxWidth())
-            Box(modifier = Modifier.align(Alignment.BottomCenter)) {
-                Column {
-                    PrimaryButton(
-                        text = stringResource(id = primaryButtonRes),
-                        modifier = Modifier
-                            .fillMaxWidth(.75f)
-                            .align(Alignment.CenterHorizontally),
-                        onClick = onPrimaryClick
+        SetupScreenLayoutTemplate(
+            content,
+            primaryButtonRes,
+            onPrimaryClick,
+            secondaryButtonRes,
+            onSecondaryClick
+        )
+    }
+}
 
-                    )
-                    SecondaryButton(
-                        text = stringResource(id = secondaryButtonRes),
-                        modifier = Modifier
-                            .fillMaxWidth(.75f)
-                            .align(Alignment.CenterHorizontally)
-                            .padding(top = 16.dp, bottom = 16.dp),
-                        onClick = onSecondaryClick
-                    )
-                }
+@Composable
+fun SetupScreenLayoutTemplate(
+    content: @Composable() (BoxScope.() -> Unit),
+    primaryButtonRes: Int,
+    onPrimaryClick: () -> Unit,
+    secondaryButtonRes: Int,
+    onSecondaryClick: () -> Unit
+) {
+    Box(
+        Modifier
+            .fillMaxSize()
+            .padding(start = 16.dp, end = 16.dp)
+    ) {
+        Box(
+            content = content, modifier = Modifier
+                .align(Alignment.TopStart)
+                .fillMaxWidth()
+        )
+        Box(modifier = Modifier.align(Alignment.BottomCenter)) {
+            Column {
+                PrimaryButton(
+                    text = stringResource(id = primaryButtonRes),
+                    modifier = Modifier
+                        .fillMaxWidth(.75f)
+                        .align(Alignment.CenterHorizontally),
+                    onClick = onPrimaryClick
+
+                )
+                SecondaryButton(
+                    text = stringResource(id = secondaryButtonRes),
+                    modifier = Modifier
+                        .fillMaxWidth(.75f)
+                        .align(Alignment.CenterHorizontally)
+                        .padding(top = 16.dp, bottom = 16.dp),
+                    onClick = onSecondaryClick
+                )
             }
         }
     }
@@ -82,6 +100,5 @@ fun SetupScreenLayout(
 @Composable
 fun DefaultPreview() {
     MaterialTheme {
-
     }
 }

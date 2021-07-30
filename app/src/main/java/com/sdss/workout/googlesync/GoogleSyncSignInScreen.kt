@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,7 +26,7 @@ import com.sdss.workout.setup.SetupFinishScreen
 import com.sdss.workout.ui.styles.titleTextStyle
 
 @Composable
-fun GoogleSyncSignInScreen(navController: NavController?) {
+fun GoogleSyncSignInScreen(onClick: () -> Unit) {
 
     val googleBtnColors = ButtonDefaults.buttonColors(
         backgroundColor = MaterialTheme.colors.surface,
@@ -48,7 +49,8 @@ fun GoogleSyncSignInScreen(navController: NavController?) {
                 Text(
                     text = stringResource(id = R.string.google_sync_sign_in_title),
                     textAlign = TextAlign.Center,
-                    style = titleTextStyle()
+                    style = titleTextStyle(),
+                    fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
@@ -60,9 +62,7 @@ fun GoogleSyncSignInScreen(navController: NavController?) {
         Box(modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 32.dp)) {
             Button(
                 colors = googleBtnColors,
-                onClick = {
-                          navController?.navigate(GoogleSyncScreens.Settings.route)
-                },
+                onClick = onClick,
                 modifier = Modifier.fillMaxWidth(.75f)
             ) {
                 Image(
@@ -84,6 +84,8 @@ fun GoogleSyncSignInScreen(navController: NavController?) {
 @Composable
 fun GoogleSyncPreview() {
     MaterialTheme {
-        GoogleSyncSignInScreen(null)
+        GoogleSyncSignInScreen {
+
+        }
     }
 }

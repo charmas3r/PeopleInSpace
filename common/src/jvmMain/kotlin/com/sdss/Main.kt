@@ -1,7 +1,7 @@
-package com.surrus
+package com.sdss
 
-import com.surrus.common.di.initKoin
-import com.surrus.common.remote.PeopleInSpaceApi
+import com.sdss.common.di.initKoin
+import com.sdss.common.remote.PeopleInSpaceApi
 import kotlinx.coroutines.runBlocking
 
 fun main() {
